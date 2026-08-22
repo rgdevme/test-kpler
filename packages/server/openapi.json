@@ -1,0 +1,412 @@
+{
+	"openapi": "3.0.0",
+	"paths": {
+		"/api/users": {
+			"get": {
+				"operationId": "UsersController_findAll",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/UserResponseDto"
+									}
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"users"
+				]
+			},
+			"post": {
+				"operationId": "UsersController_create",
+				"parameters": [
+					{
+						"name": "x-actor-user-id",
+						"in": "header",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateUserDto"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/UserResponseDto"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": ""
+					},
+					"404": {
+						"description": ""
+					},
+					"409": {
+						"description": ""
+					}
+				},
+				"tags": [
+					"users"
+				]
+			}
+		},
+		"/api/users/{userId}/roles": {
+			"put": {
+				"operationId": "UsersController_replaceRoles",
+				"parameters": [
+					{
+						"name": "userId",
+						"required": true,
+						"in": "path",
+						"schema": {
+							"format": "uuid",
+							"type": "string"
+						}
+					},
+					{
+						"name": "x-actor-user-id",
+						"in": "header",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ReplaceUserRolesDto"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/UserResponseDto"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": ""
+					},
+					"404": {
+						"description": ""
+					}
+				},
+				"tags": [
+					"users"
+				]
+			}
+		},
+		"/api/roles": {
+			"get": {
+				"operationId": "RolesController_findAll",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/RoleResponseDto"
+									}
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"roles"
+				]
+			}
+		},
+		"/api/audit-logs": {
+			"get": {
+				"operationId": "AuditController_findAll",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/AuditLogResponseDto"
+									}
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"audit"
+				]
+			}
+		},
+		"/api/health": {
+			"get": {
+				"operationId": "HealthController_getHealth",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/HealthResponseDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"health"
+				]
+			}
+		}
+	},
+	"info": {
+		"title": "Access Provisioning and Audit API",
+		"description": "Manage user access levels and inspect the immutable access audit history.",
+		"version": "1.0.0",
+		"contact": {}
+	},
+	"tags": [
+		{
+			"name": "users",
+			"description": ""
+		},
+		{
+			"name": "roles",
+			"description": ""
+		},
+		{
+			"name": "audit",
+			"description": ""
+		},
+		{
+			"name": "health",
+			"description": ""
+		}
+	],
+	"servers": [],
+	"components": {
+		"schemas": {
+			"RoleResponseDto": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string",
+						"example": "Support"
+					}
+				},
+				"required": [
+					"id",
+					"name"
+				]
+			},
+			"UserResponseDto": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"displayName": {
+						"type": "string",
+						"example": "Olivia Operations"
+					},
+					"email": {
+						"type": "string",
+						"example": "olivia.operations@example.com",
+						"format": "email"
+					},
+					"roles": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/RoleResponseDto"
+						}
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"id",
+					"displayName",
+					"email",
+					"roles",
+					"createdAt",
+					"updatedAt"
+				]
+			},
+			"CreateUserDto": {
+				"type": "object",
+				"properties": {
+					"displayName": {
+						"type": "string",
+						"example": "Alex Analyst",
+						"maxLength": 120,
+						"minLength": 2
+					},
+					"email": {
+						"type": "string",
+						"example": "alex.analyst@example.com",
+						"format": "email",
+						"maxLength": 320
+					},
+					"roleIds": {
+						"default": [],
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					}
+				},
+				"required": [
+					"displayName",
+					"email"
+				]
+			},
+			"ReplaceUserRolesDto": {
+				"type": "object",
+				"properties": {
+					"roleIds": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					}
+				},
+				"required": [
+					"roleIds"
+				]
+			},
+			"UserReferenceDto": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"displayName": {
+						"type": "string",
+						"example": "Olivia Operations"
+					},
+					"email": {
+						"type": "string",
+						"example": "olivia.operations@example.com",
+						"format": "email"
+					}
+				},
+				"required": [
+					"id",
+					"displayName",
+					"email"
+				]
+			},
+			"AuditLogResponseDto": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"action": {
+						"type": "string",
+						"enum": [
+							"ROLES_CHANGED",
+							"USER_CREATED"
+						]
+					},
+					"actor": {
+						"$ref": "#/components/schemas/UserReferenceDto"
+					},
+					"target": {
+						"$ref": "#/components/schemas/UserReferenceDto"
+					},
+					"beforeRoles": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/RoleResponseDto"
+						}
+					},
+					"afterRoles": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/RoleResponseDto"
+						}
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"id",
+					"action",
+					"actor",
+					"target",
+					"beforeRoles",
+					"afterRoles",
+					"createdAt"
+				]
+			},
+			"HealthResponseDto": {
+				"type": "object",
+				"properties": {
+					"status": {
+						"type": "string",
+						"example": "ok"
+					}
+				},
+				"required": [
+					"status"
+				]
+			}
+		}
+	}
+}
