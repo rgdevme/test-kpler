@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "skills": {
+    "github:Leonxlnx/taste-skill/skills/brandkit": {
+      "computedHash": "d39d814e4488b25cadf28021bf1633a4dc791a3f6aa6d4097ee7df36c4fa203c",
+      "resolvedAt": "2026-08-22T11:47:14.279Z",
+      "resolvedCommit": "843c8dd4d18ccff0d5a9cd4b0b71d7dbf7278293",
+      "ref": "main"
+    },
+    "github:Leonxlnx/taste-skill/skills/gpt-tasteskill": {
+      "computedHash": "929a7306bf08022ec10ad039f7c2565112be811d85ab28cbae012dca0e87c165",
+      "resolvedAt": "2026-08-22T11:47:14.201Z",
+      "resolvedCommit": "843c8dd4d18ccff0d5a9cd4b0b71d7dbf7278293",
+      "ref": "main"
+    },
+    "github:Leonxlnx/taste-skill/skills/image-to-code-skill": {
+      "computedHash": "8aede1ddd6678311b4ab48a1549a28e5aacd830b41aa392c14d140f359c78677",
+      "resolvedAt": "2026-08-22T11:47:14.339Z",
+      "resolvedCommit": "843c8dd4d18ccff0d5a9cd4b0b71d7dbf7278293",
+      "ref": "main"
+    },
+    "github:Leonxlnx/taste-skill/skills/imagegen-frontend-mobile": {
+      "computedHash": "e7cdc17bf243a6630557c5d1601372016bc07718ea99775799c119cc2c26076a",
+      "resolvedAt": "2026-08-22T11:47:14.142Z",
+      "resolvedCommit": "843c8dd4d18ccff0d5a9cd4b0b71d7dbf7278293",
+      "ref": "main"
+    },
+    "github:Leonxlnx/taste-skill/skills/imagegen-frontend-web": {
+      "computedHash": "a1e01e63304ed843515d5e916620bc9ab66e575dd0d46b096a5959b1c2629a3b",
+      "resolvedAt": "2026-08-22T11:47:14.255Z",
+      "resolvedCommit": "843c8dd4d18ccff0d5a9cd4b0b71d7dbf7278293",
+      "ref": "main"
+    },
+    "github:Leonxlnx/taste-skill/skills/minimalist-skill": {
+      "computedHash": "6db2ecbe27c29d923fe97df6db9131acbefa2e814d1a2a8bb3f9bdac10a72e6e",
+      "resolvedAt": "2026-08-22T11:47:14.226Z",
+      "resolvedCommit": "843c8dd4d18ccff0d5a9cd4b0b71d7dbf7278293",
+      "ref": "main"
+    },
+    "github:Leonxlnx/taste-skill/skills/redesign-skill": {
+      "computedHash": "4a2f4bdb62f85715ab775b2b5b49dbcba3f25759dd2501c5f6a478df2363ee71",
+      "resolvedAt": "2026-08-22T11:47:14.322Z",
+      "resolvedCommit": "843c8dd4d18ccff0d5a9cd4b0b71d7dbf7278293",
+      "ref": "main"
+    },
+    "github:Leonxlnx/taste-skill/skills/soft-skill": {
+      "computedHash": "8ef0ace6cfee77bd51093f7391a66c96e90ac256967a0b17041c4984da88208f",
+      "resolvedAt": "2026-08-22T11:47:14.301Z",
+      "resolvedCommit": "843c8dd4d18ccff0d5a9cd4b0b71d7dbf7278293",
+      "ref": "main"
+    },
+    "github:github/awesome-copilot/skills/acquire-codebase-knowledge": {
+      "computedHash": "25d6b17e49025bb7e7e0303d6d780ecd314f2b750fde6800e493e2b84ad266a3",
+      "resolvedAt": "2026-08-22T11:47:19.473Z",
+      "resolvedCommit": "83561bd7d8a46fcda0581aedabdf8eac7cb196b6",
+      "ref": "main"
+    },
+    "github:github/awesome-copilot/skills/architecture-blueprint-generator": {
+      "computedHash": "d0b43e63bd6f497b16689a0ed387794e89e328eb82183743aaeceed1f5c39975",
+      "resolvedAt": "2026-08-22T11:47:18.588Z",
+      "resolvedCommit": "83561bd7d8a46fcda0581aedabdf8eac7cb196b6",
+      "ref": "main"
+    },
+    "github:github/awesome-copilot/skills/autoresearch": {
+      "computedHash": "66b86c5f984e097a939bc7ac98d61f97888b38bfe550d3b29f797fe836ae5d7a",
+      "resolvedAt": "2026-08-22T11:47:18.717Z",
+      "resolvedCommit": "83561bd7d8a46fcda0581aedabdf8eac7cb196b6",
+      "ref": "main"
+    },
+    "github:github/awesome-copilot/skills/chrome-devtools": {
+      "computedHash": "f157505910c6609a19c33a27eb73e0916a678290ed020b8e31839798763eb6d6",
+      "resolvedAt": "2026-08-22T11:47:23.371Z",
+      "resolvedCommit": "83561bd7d8a46fcda0581aedabdf8eac7cb196b6",
+      "ref": "main"
+    },
+    "github:github/awesome-copilot/skills/cli-mastery": {
+      "computedHash": "a78b34d449ec8e1c210e357bfe235136bfda52c1693b8f513941f67d5f836161",
+      "resolvedAt": "2026-08-22T11:47:24.313Z",
+      "resolvedCommit": "83561bd7d8a46fcda0581aedabdf8eac7cb196b6",
+      "ref": "main"
+    },
+    "github:github/awesome-copilot/skills/context-map": {
+      "computedHash": "e3bfaadbeea4c9801e747ef32985eae7b31b6df3814f5abc8fe5bf1ea646a30c",
+      "resolvedAt": "2026-08-22T11:47:24.552Z",
+      "resolvedCommit": "83561bd7d8a46fcda0581aedabdf8eac7cb196b6",
+      "ref": "main"
+    },
+    "github:github/awesome-copilot/skills/documentation-writer": {
+      "computedHash": "94e6cfbd49f99c04f0d916f2d46b20f32fb0b9d0a393f9ea5acc412904b1a0b3",
+      "resolvedAt": "2026-08-22T11:47:24.215Z",
+      "resolvedCommit": "83561bd7d8a46fcda0581aedabdf8eac7cb196b6",
+      "ref": "main"
+    },
+    "github:github/awesome-copilot/skills/em-dash": {
+      "computedHash": "df14c4e1cf182e8717ac4a5ae5178fa130b98ece6655937e637032c528975a62",
+      "resolvedAt": "2026-08-22T11:47:24.390Z",
+      "resolvedCommit": "83561bd7d8a46fcda0581aedabdf8eac7cb196b6",
+      "ref": "main"
+    },
+    "github:github/awesome-copilot/skills/sql-code-review": {
+      "computedHash": "d37818eff3bcafcee054d601eaad473e42c8e56ebc91171663a847e2dc431eaa",
+      "resolvedAt": "2026-08-22T11:47:24.428Z",
+      "resolvedCommit": "83561bd7d8a46fcda0581aedabdf8eac7cb196b6",
+      "ref": "main"
+    },
+    "github:github/awesome-copilot/skills/sql-optimization": {
+      "computedHash": "c8538898698e353f624b605e8ce8e231b139edc8a82b381d3d4785c772c15ab7",
+      "resolvedAt": "2026-08-22T11:47:24.562Z",
+      "resolvedCommit": "83561bd7d8a46fcda0581aedabdf8eac7cb196b6",
+      "ref": "main"
+    },
+    "github:github/awesome-copilot/skills/suggest-awesome-github-copilot-instructions": {
+      "computedHash": "d69d519778751fc757d11a3e3bd6f0e4796ec121929f1c25521d266d02fd505d",
+      "resolvedAt": "2026-08-22T11:47:27.757Z",
+      "resolvedCommit": "83561bd7d8a46fcda0581aedabdf8eac7cb196b6",
+      "ref": "main"
+    },
+    "github:github/awesome-copilot/skills/suggest-awesome-github-copilot-skills": {
+      "computedHash": "fb622c01f5e10dc3458179320cc564ad470d7cef75372af5e6f5a99c79250f2c",
+      "resolvedAt": "2026-08-22T11:47:27.864Z",
+      "resolvedCommit": "83561bd7d8a46fcda0581aedabdf8eac7cb196b6",
+      "ref": "main"
+    },
+    "github:rgdevme/luxia/skills/doc-authoring": {
+      "computedHash": "b49787d464aae4305afaea7b4516354b3058b713a7cf28fbf3e3b6a30ea6f0bd",
+      "resolvedAt": "2026-08-22T11:47:18.144Z",
+      "resolvedCommit": "4dbb3279375fa36d7a36f1de7c3a61823e5ea39c",
+      "ref": "main"
+    },
+    "github:rgdevme/luxia/skills/okf-authoring": {
+      "computedHash": "6e0ee7dbf3767187fc3f76255ab26660fbc8e9fb88d79b1e764ba2b0a932056e",
+      "resolvedAt": "2026-08-22T11:47:18.814Z",
+      "resolvedCommit": "4dbb3279375fa36d7a36f1de7c3a61823e5ea39c",
+      "ref": "main"
+    },
+    "github:rgdevme/luxia/skills/rules-authoring": {
+      "computedHash": "c5a2675efc0914a823668a4f7f4239670e8b92e9403645ec7e25bb734c3d0b6d",
+      "resolvedAt": "2026-08-22T11:47:18.540Z",
+      "resolvedCommit": "4dbb3279375fa36d7a36f1de7c3a61823e5ea39c",
+      "ref": "main"
+    },
+    "github:vercel-labs/skills/skills/find-skills": {
+      "computedHash": "d18c006a378ff9ac89d0281d3930a6653ea0a39a3a394eccab4313ac4738f89b",
+      "resolvedAt": "2026-08-22T11:47:18.748Z",
+      "resolvedCommit": "435076e78988e1e6ec40d00b0b1d76bdbbc5419a",
+      "ref": "main"
+    },
+    "github:vercel/turborepo/skills/turborepo": {
+      "computedHash": "46ea7c7d952c757d0cefd1e661eead4cfe46d5ff9c28c64c75d24cdc3420cabc",
+      "resolvedAt": "2026-08-22T11:47:23.312Z",
+      "resolvedCommit": "ef1ef9284898bfc89b34f35013c6f5e22867ff00",
+      "ref": "main"
+    }
+  }
+}

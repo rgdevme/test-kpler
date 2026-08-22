@@ -1,0 +1,50 @@
+{
+  "$schema": "https://unpkg.com/@luxia/agnos/schema.json",
+  "schemaVersion": 1,
+  "agents": [
+    "codex"
+  ],
+  "rules": {
+    "files": {
+      "./AGENTS.md": [
+        ".docs/.rules",
+        ".docs/index.md"
+      ]
+    }
+  },
+  "skills": {
+    "sources": {
+      "brandkit": "github:Leonxlnx/taste-skill/skills/brandkit",
+      "gpt-tasteskill": "github:Leonxlnx/taste-skill/skills/gpt-tasteskill",
+      "image-to-code-skill": "github:Leonxlnx/taste-skill/skills/image-to-code-skill",
+      "imagegen-frontend-mobile": "github:Leonxlnx/taste-skill/skills/imagegen-frontend-mobile",
+      "imagegen-frontend-web": "github:Leonxlnx/taste-skill/skills/imagegen-frontend-web",
+      "minimalist-skill": "github:Leonxlnx/taste-skill/skills/minimalist-skill",
+      "redesign-skill": "github:Leonxlnx/taste-skill/skills/redesign-skill",
+      "soft-skill": "github:Leonxlnx/taste-skill/skills/soft-skill",
+      "doc-authoring": "github:rgdevme/luxia/skills/doc-authoring",
+      "okf-authoring": "github:rgdevme/luxia/skills/okf-authoring",
+      "rules-authoring": "github:rgdevme/luxia/skills/rules-authoring",
+      "turborepo": "github:vercel/turborepo/skills/turborepo",
+      "find-skills": "github:vercel-labs/skills/skills/find-skills",
+      "acquire-codebase-knowledge": "github:github/awesome-copilot/skills/acquire-codebase-knowledge",
+      "architecture-blueprint-generator": "github:github/awesome-copilot/skills/architecture-blueprint-generator",
+      "autoresearch": "github:github/awesome-copilot/skills/autoresearch",
+      "chrome-devtools": "github:github/awesome-copilot/skills/chrome-devtools",
+      "cli-mastery": "github:github/awesome-copilot/skills/cli-mastery",
+      "context-map": "github:github/awesome-copilot/skills/context-map",
+      "documentation-writer": "github:github/awesome-copilot/skills/documentation-writer",
+      "em-dash": "github:github/awesome-copilot/skills/em-dash",
+      "sql-code-review": "github:github/awesome-copilot/skills/sql-code-review",
+      "sql-optimization": "github:github/awesome-copilot/skills/sql-optimization",
+      "suggest-awesome-github-copilot-instructions": "github:github/awesome-copilot/skills/suggest-awesome-github-copilot-instructions",
+      "suggest-awesome-github-copilot-skills": "github:github/awesome-copilot/skills/suggest-awesome-github-copilot-skills"
+    }
+  },
+  "docs": {
+    "root": ".docs",
+    "ignore": [
+      ".rules"
+    ]
+  }
+}
