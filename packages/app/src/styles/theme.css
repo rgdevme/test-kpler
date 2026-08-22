@@ -1,0 +1,17 @@
+@theme {
+	--color-canvas: #f4f3ee;
+	--color-surface: #ffffff;
+	--color-ink: #18211d;
+	--color-muted: #66716b;
+	--color-line: #dce1dc;
+	--color-accent: #d8ff70;
+	--color-accent-strong: #b5eb33;
+	--color-accent-ink: #17200e;
+	--color-danger: #b42318;
+	--color-danger-soft: #fef3f2;
+	--color-success: #18794e;
+	--color-success-soft: #edf9f2;
+	--font-sans: "Inter", "Segoe UI", sans-serif;
+	--font-display: "Georgia", "Times New Roman", serif;
+	--shadow-panel: 0 18px 50px rgb(24 33 29 / 8%);
+}

@@ -1,0 +1,17 @@
+@reference "../../../styles/globals.css";
+
+.fieldset {
+	@apply flex flex-wrap gap-2 border-0 p-0;
+
+	legend {
+		@apply mb-2 w-full text-sm font-semibold;
+	}
+}
+
+.option {
+	@apply inline-flex cursor-pointer items-center gap-2 rounded-full border border-line bg-white px-3 py-2 text-sm has-checked:border-ink has-checked:bg-accent;
+
+	input {
+		@apply size-4 accent-ink;
+	}
+}

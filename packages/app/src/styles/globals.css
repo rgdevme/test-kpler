@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+:root {
+	font-family: var(--font-sans);
+	color: var(--color-ink);
+	background: var(--color-canvas);
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-width: 20rem;
+	min-height: 100vh;
+}
+
+button,
+input,
+select {
+	font: inherit;
+}
+
+button,
+a,
+input,
+select {
+	outline-offset: 0.2rem;
+}
+
+::selection {
+	color: var(--color-accent-ink);
+	background: var(--color-accent);
+}
+
+:focus-visible {
+	outline: 0.15rem solid var(--color-ink);
+}

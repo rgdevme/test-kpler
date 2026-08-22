@@ -1,0 +1,17 @@
+@reference "../../../styles/globals.css";
+
+.button {
+	@apply inline-flex min-h-10 cursor-pointer items-center justify-center rounded-full border px-5 py-2 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50;
+
+	&[data-variant="primary"] {
+		@apply border-ink bg-ink text-white hover:bg-accent hover:text-accent-ink;
+	}
+
+	&[data-variant="secondary"] {
+		@apply border-line bg-surface text-ink hover:border-ink;
+	}
+
+	&[data-variant="quiet"] {
+		@apply min-h-8 border-transparent bg-transparent px-3 text-ink hover:bg-canvas;
+	}
+}

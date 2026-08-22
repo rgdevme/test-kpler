@@ -1,0 +1,5 @@
+@reference "../../../styles/globals.css";
+
+.pill {
+	@apply inline-flex rounded-full border border-line bg-canvas px-2.5 py-1 text-xs font-semibold text-ink;
+}

@@ -1,0 +1,25 @@
+@reference "../../../styles/globals.css";
+
+.page {
+	@apply grid gap-6;
+}
+
+.heading {
+	@apply border-t border-line pt-10;
+
+	span {
+		@apply text-xs font-semibold tracking-wider text-muted uppercase;
+	}
+
+	h1 {
+		@apply my-2 font-display text-4xl tracking-tight sm:text-5xl;
+	}
+
+	p {
+		@apply m-0 max-w-2xl text-muted;
+	}
+}
+
+.error {
+	@apply flex items-center justify-between rounded-2xl border border-danger bg-danger-soft p-4 text-danger;
+}

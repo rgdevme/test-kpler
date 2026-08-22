@@ -1,0 +1,29 @@
+@reference "../../../styles/globals.css";
+
+.panel {
+	@apply rounded-3xl border border-ink bg-ink p-6 text-white shadow-panel;
+
+	header > span {
+		@apply text-xs font-semibold tracking-wider text-accent uppercase;
+	}
+
+	h2 {
+		@apply my-2 font-display text-2xl;
+	}
+
+	p {
+		@apply m-0 text-sm text-gray-300;
+	}
+}
+
+.form {
+	@apply mt-6 grid gap-5 rounded-2xl bg-white p-4 text-ink;
+}
+
+.footer {
+	@apply flex min-h-10 flex-col gap-3 sm:flex-row sm:items-center sm:justify-between;
+
+	p {
+		@apply text-sm text-muted;
+	}
+}

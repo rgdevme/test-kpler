@@ -1,0 +1,17 @@
+@reference "../../../styles/globals.css";
+
+.selector {
+	@apply flex flex-col gap-3 rounded-2xl border border-line bg-surface p-4 sm:flex-row sm:items-center sm:justify-between;
+}
+
+.copy {
+	@apply flex flex-col gap-1 text-sm;
+
+	small {
+		@apply text-muted;
+	}
+}
+
+.select {
+	@apply min-h-11 min-w-64 rounded-xl border border-line bg-white px-3 text-sm text-ink;
+}
