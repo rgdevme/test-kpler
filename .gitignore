@@ -1,3 +1,15 @@
 .agnos/
 .agents/
 .codex/
+.turbo/
+node_modules/
+dist/
+.cache/
+*.tsbuildinfo
+.env
+.env.local
+.env.*.local
+!.env.example
+playwright-report/
+test-results/
+pnpm-debug.log*

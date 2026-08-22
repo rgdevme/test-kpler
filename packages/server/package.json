@@ -1,0 +1,46 @@
+{
+	"name": "@access/server",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": ">=24.0.0 <25"
+	},
+	"exports": {
+		"./generated/*": "./src/generated/*.ts"
+	},
+	"scripts": {
+		"build": "nest build",
+		"check:format": "prettier --check . --ignore-path ../../.prettierignore",
+		"check:lint": "eslint .",
+		"check:typecheck": "tsc --noEmit --incremental --tsBuildInfoFile .cache/typecheck.tsbuildinfo && tsx src/tooling/check-generated-types.ts",
+		"dev": "tsx src/tooling/run-server.ts dev",
+		"format:fix": "prettier --write . --ignore-path ../../.prettierignore",
+		"generate:types": "tsx src/tooling/generate-types.ts",
+		"lint:fix": "eslint . --fix",
+		"migration:run": "tsx src/database/run-migrations.ts",
+		"seed": "tsx src/database/seed.ts",
+		"start": "node dist/tooling/run-server.js start"
+	},
+	"dependencies": {
+		"@nestjs/common": "catalog:",
+		"@nestjs/config": "catalog:",
+		"@nestjs/core": "catalog:",
+		"@nestjs/platform-express": "catalog:",
+		"@nestjs/swagger": "catalog:",
+		"@nestjs/typeorm": "catalog:",
+		"class-transformer": "catalog:",
+		"class-validator": "catalog:",
+		"pg": "catalog:",
+		"reflect-metadata": "catalog:",
+		"rxjs": "catalog:",
+		"typeorm": "catalog:"
+	},
+	"devDependencies": {
+		"@nestjs/cli": "catalog:",
+		"@types/node": "catalog:",
+		"@types/pg": "catalog:",
+		"openapi-typescript": "catalog:",
+		"tsx": "catalog:"
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"extends": ["//"],
+	"tasks": {
+		"build": {
+			"dependsOn": ["$TURBO_EXTENDS$", "generate:types"]
+		},
+		"check:typecheck": {
+			"dependsOn": ["$TURBO_EXTENDS$", "generate:types"]
+		}
+	}
+}

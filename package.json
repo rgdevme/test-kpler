@@ -1,0 +1,36 @@
+{
+	"name": "access-provisioning-portal",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": ">=24.0.0 <25"
+	},
+	"packageManager": "pnpm@11.5.2",
+	"scripts": {
+		"build": "turbo run build",
+		"check": "turbo run check:format check:lint check:typecheck",
+		"check:format": "turbo run check:format",
+		"check:lint": "turbo run check:lint",
+		"check:typecheck": "turbo run check:typecheck",
+		"dev": "turbo run dev",
+		"format:fix": "turbo run format:fix",
+		"generate:types": "turbo run generate:types --filter=@access/server",
+		"lint:fix": "turbo run lint:fix",
+		"start": "turbo run start",
+		"test": "turbo run test",
+		"verify": "turbo run check:format check:lint check:typecheck test"
+	},
+	"devDependencies": {
+		"@eslint/js": "catalog:",
+		"@types/node": "catalog:",
+		"eslint": "catalog:",
+		"eslint-config-prettier": "catalog:",
+		"eslint-plugin-vue": "catalog:",
+		"globals": "catalog:",
+		"prettier": "catalog:",
+		"turbo": "catalog:",
+		"typescript": "catalog:",
+		"typescript-eslint": "catalog:"
+	}
+}

@@ -1,0 +1,11 @@
+.agnos/
+.agents/
+.docs/
+.cache/
+.turbo/
+dist/
+node_modules/
+playwright-report/
+test-results/
+packages/server/src/generated/
+packages/server/openapi.json
