@@ -1,0 +1,7 @@
+{
+	"actor": {
+		"displayName": "Olivia Operations",
+		"email": "olivia.operations@example.com"
+	},
+	"roles": ["Admin", "Support", "Viewer"]
+}
