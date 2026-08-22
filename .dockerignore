@@ -1,0 +1,13 @@
+.agnos
+.agents
+.codex
+.docs
+.git
+.github
+.turbo
+**/.cache
+**/dist
+**/node_modules
+**/playwright-report
+**/test-results
+node_modules
