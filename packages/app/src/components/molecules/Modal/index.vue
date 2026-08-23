@@ -1,31 +1,33 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, useId } from "vue";
+import { onBeforeUnmount, onMounted, ref, useId } from "vue"
 
-import styles from "./index.module.css";
+import styles from "./index.module.css"
 
-const emit = defineEmits<{ close: [] }>();
-const titleId = useId();
-const descriptionId = useId();
-const dialog = ref<HTMLElement | null>(null);
+const emit = defineEmits<{ close: [] }>()
+const titleId = useId()
+const descriptionId = useId()
+const dialog = ref<HTMLElement | null>(null)
 
 const handleKeydown = (event: KeyboardEvent): void => {
 	if (event.key === "Escape") {
-		emit("close");
+		emit("close")
 	}
-};
+}
 
 onMounted(() => {
-	document.addEventListener("keydown", handleKeydown);
-	dialog.value?.focus();
-});
+	document.addEventListener("keydown", handleKeydown)
+	dialog.value?.focus()
+})
 
 onBeforeUnmount(() => {
-	document.removeEventListener("keydown", handleKeydown);
-});
+	document.removeEventListener("keydown", handleKeydown)
+})
 </script>
 
 <template>
-	<div :class="styles.backdrop" @click.self="emit('close')">
+	<div
+		:class="styles.backdrop"
+		@click.self="emit('close')">
 		<section
 			ref="dialog"
 			:aria-describedby="descriptionId"
@@ -33,8 +35,7 @@ onBeforeUnmount(() => {
 			:class="styles.modal"
 			aria-modal="true"
 			role="dialog"
-			tabindex="-1"
-		>
+			tabindex="-1">
 			<div :class="styles.header">
 				<div :id="titleId"><slot name="title" /></div>
 				<div :id="descriptionId"><slot name="description" /></div>

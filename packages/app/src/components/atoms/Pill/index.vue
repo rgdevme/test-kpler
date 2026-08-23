@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import styles from "./index.module.css";
+import styles from "./index.module.css"
 
-defineProps<{ name: string }>();
+defineProps<{ name: string }>()
 </script>
 
 <template>

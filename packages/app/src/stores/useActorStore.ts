@@ -1,11 +1,11 @@
-import { ref } from "vue";
+import { ref } from "vue"
 
-const actorUserId = ref("");
+const actorUserId = ref("")
 
 export const useActorStore = () => {
 	const setActorUserId = (userId: string): void => {
-		actorUserId.value = userId;
-	};
+		actorUserId.value = userId
+	}
 
-	return { actorUserId, setActorUserId };
-};
+	return { actorUserId, setActorUserId }
+}

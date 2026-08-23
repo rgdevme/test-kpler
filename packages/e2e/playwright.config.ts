@@ -1,12 +1,12 @@
-import { defineConfig, devices } from "@playwright/test";
+import { defineConfig, devices } from "@playwright/test"
 
 const stackEnvironment = {
 	...process.env,
 	API_PORT: "13000",
 	APP_PORT: "18080",
 	COMPOSE_PROJECT_NAME: "access-provisioning-e2e",
-	DATABASE_PORT: "15432",
-};
+	DATABASE_PORT: "15432"
+}
 
 export default defineConfig({
 	fullyParallel: false,
@@ -17,7 +17,7 @@ export default defineConfig({
 	testDir: "./tests",
 	use: {
 		baseURL: "http://127.0.0.1:18080",
-		trace: "retain-on-failure",
+		trace: "retain-on-failure"
 	},
 	webServer: {
 		command: "pnpm stack:start",
@@ -26,13 +26,13 @@ export default defineConfig({
 		stderr: "pipe",
 		stdout: "pipe",
 		timeout: 240_000,
-		url: "http://127.0.0.1:18080/api/health",
+		url: "http://127.0.0.1:18080/api/health"
 	},
 	workers: 1,
 	projects: [
 		{
 			name: "chromium",
-			use: { ...devices["Desktop Chrome"] },
-		},
-	],
-});
+			use: { ...devices["Desktop Chrome"] }
+		}
+	]
+})

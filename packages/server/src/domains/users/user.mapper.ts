@@ -1,5 +1,5 @@
-import type { UserResponseDto } from "./dto/user-response.dto.js";
-import type { User } from "./entities/user.entity.js";
+import type { UserResponseDto } from "./dto/user-response.dto.js"
+import type { User } from "./entities/user.entity.js"
 
 export const mapUserResponse = (user: User): UserResponseDto => ({
 	createdAt: user.createdAt.toISOString(),
@@ -9,5 +9,5 @@ export const mapUserResponse = (user: User): UserResponseDto => ({
 	roles: user.userRoles
 		.map(({ role }) => ({ id: role.id, name: role.name }))
 		.sort((left, right) => left.name.localeCompare(right.name)),
-	updatedAt: user.updatedAt.toISOString(),
-});
+	updatedAt: user.updatedAt.toISOString()
+})

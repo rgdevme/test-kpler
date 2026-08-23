@@ -1,4 +1,4 @@
 export type RoleSnapshot = {
-	id: string;
-	name: string;
-};
+	id: string
+	name: string
+}

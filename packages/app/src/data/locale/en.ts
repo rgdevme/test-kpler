@@ -1,18 +1,18 @@
 export const strings = {
 	app: {
 		eyebrow: "Identity & access management",
-		name: "Access Portal",
+		name: "Access Portal"
 	},
 	navigation: {
 		audit: "Events",
-		users: "Users",
+		users: "Users"
 	},
 	common: {
 		cancel: "Cancel",
 		empty: "Nothing to show yet.",
 		loading: "Loading…",
 		retry: "Try again",
-		save: "Save changes",
+		save: "Save changes"
 	},
 	users: {
 		addAction: "Add user",
@@ -39,8 +39,8 @@ export const strings = {
 			displayName: "Enter a display name with at least 2 characters.",
 			email: "Enter a valid email address.",
 			generic: "The change could not be saved. Review the form and try again.",
-			unknownActor: "The selected acting user is unavailable.",
-		},
+			unknownActor: "The selected acting user is unavailable."
+		}
 	},
 	audit: {
 		action: "Action",
@@ -55,7 +55,7 @@ export const strings = {
 		time: "When",
 		actions: {
 			ROLES_CHANGED: "Roles changed",
-			USER_CREATED: "User created",
-		},
-	},
-} as const;
+			USER_CREATED: "User created"
+		}
+	}
+} as const

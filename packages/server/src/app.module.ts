@@ -1,12 +1,12 @@
-import { Module } from "@nestjs/common";
-import { ConfigModule } from "@nestjs/config";
-import { TypeOrmModule } from "@nestjs/typeorm";
+import { Module } from "@nestjs/common"
+import { ConfigModule } from "@nestjs/config"
+import { TypeOrmModule } from "@nestjs/typeorm"
 
-import { AuditModule } from "./domains/audit/audit.module.js";
-import { HealthModule } from "./domains/health/health.module.js";
-import { RolesModule } from "./domains/roles/roles.module.js";
-import { UsersModule } from "./domains/users/users.module.js";
-import { getDataSourceOptions } from "./database/data-source-options.js";
+import { AuditModule } from "./domains/audit/audit.module.js"
+import { HealthModule } from "./domains/health/health.module.js"
+import { RolesModule } from "./domains/roles/roles.module.js"
+import { UsersModule } from "./domains/users/users.module.js"
+import { getDataSourceOptions } from "./database/data-source-options.js"
 
 @Module({
 	imports: [
@@ -15,7 +15,7 @@ import { getDataSourceOptions } from "./database/data-source-options.js";
 		UsersModule,
 		RolesModule,
 		AuditModule,
-		HealthModule,
-	],
+		HealthModule
+	]
 })
 export class AppModule {}

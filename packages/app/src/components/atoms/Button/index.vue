@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import styles from "./index.module.css";
+import styles from "./index.module.css"
 
 withDefaults(
 	defineProps<{
-		disabled?: boolean;
-		form?: string | undefined;
-		type?: "button" | "submit";
-		variant?: "icon" | "primary" | "secondary" | "quiet";
+		disabled?: boolean
+		form?: string | undefined
+		type?: "button" | "submit"
+		variant?: "icon" | "primary" | "secondary" | "quiet"
 	}>(),
 	{
 		disabled: false,
 		form: undefined,
 		type: "button",
-		variant: "primary",
-	},
-);
+		variant: "primary"
+	}
+)
 </script>
 
 <template>
@@ -23,8 +23,7 @@ withDefaults(
 		:data-variant="variant"
 		:disabled="disabled"
 		:form="form"
-		:type="type"
-	>
+		:type="type">
 		<slot />
 	</button>
 </template>

@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed } from "vue"
 
-import { AuditTable, Button } from "@/components/index.js";
-import { useAuditLogsQuery } from "@/composables/use-access-data.js";
-import { strings } from "@/data/locale/en.js";
-import styles from "./index.module.css";
+import { AuditTable, Button } from "@/components/index.js"
+import { useAuditLogsQuery } from "@/composables/use-access-data.js"
+import { strings } from "@/data/locale/en.js"
+import styles from "./index.module.css"
 
-const auditQuery = useAuditLogsQuery();
-const auditLogs = computed(() => auditQuery.data.value ?? []);
+const auditQuery = useAuditLogsQuery()
+const auditLogs = computed(() => auditQuery.data.value ?? [])
 </script>
 
 <template>
@@ -17,14 +17,24 @@ const auditLogs = computed(() => auditQuery.data.value ?? []);
 			<h1>{{ strings.audit.heading }}</h1>
 			<p>{{ strings.audit.subheading }}</p>
 		</header>
-		<p v-if="auditQuery.isPending.value" role="status">{{ strings.common.loading }}</p>
-		<div v-else-if="auditQuery.isError.value" :class="styles.error">
+		<p
+			v-if="auditQuery.isPending.value"
+			role="status">
+			{{ strings.common.loading }}
+		</p>
+		<div
+			v-else-if="auditQuery.isError.value"
+			:class="styles.error">
 			<p role="alert">{{ strings.audit.loadError }}</p>
-			<Button variant="secondary" @click="auditQuery.refetch()">
+			<Button
+				variant="secondary"
+				@click="auditQuery.refetch()">
 				{{ strings.common.retry }}
 			</Button>
 		</div>
-		<AuditTable v-else-if="auditLogs.length > 0" :audit-logs="auditLogs" />
+		<AuditTable
+			v-else-if="auditLogs.length > 0"
+			:audit-logs="auditLogs" />
 		<p v-else>{{ strings.audit.empty }}</p>
 	</div>
 </template>

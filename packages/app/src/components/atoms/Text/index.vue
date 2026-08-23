@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import styles from "./index.module.css";
+import styles from "./index.module.css"
 </script>
 
 <template>

@@ -1,7 +1,7 @@
-import "reflect-metadata";
+import "reflect-metadata"
 
-import { DataSource } from "typeorm";
+import { DataSource } from "typeorm"
 
-import { getDataSourceOptions } from "./data-source-options.js";
+import { getDataSourceOptions } from "./data-source-options.js"
 
-export const dataSource = new DataSource(getDataSourceOptions());
+export const dataSource = new DataSource(getDataSourceOptions())
