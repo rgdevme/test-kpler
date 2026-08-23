@@ -1,16 +1,10 @@
 import createClient from "openapi-fetch"
+import type { Middleware } from "openapi-fetch"
 
 import type { paths } from "@server/_generated/api"
-import type {
-	AuditLog,
-	CreateUserInput,
-	ReplaceUserRolesInput,
-	Role,
-	UpdateUserInput,
-	User
-} from "./types.js"
+import { useActorStore } from "@/stores/useActorStore.js"
 
-const client = createClient<paths>({ baseUrl: "" })
+const ACTOR_HEADER = "x-actor-user-id"
 
 export class ApiRequestError extends Error {
 	public constructor(public readonly status: number) {
@@ -19,62 +13,24 @@ export class ApiRequestError extends Error {
 	}
 }
 
-const requireData = <T>(data: T | undefined, status: number): T => {
-	if (data === undefined) {
-		throw new ApiRequestError(status)
+const provisionActor: Middleware = {
+	onRequest: ({ request }) => {
+		const { actorUserId } = useActorStore()
+
+		if (actorUserId.value) {
+			request.headers.set(ACTOR_HEADER, actorUserId.value)
+		}
 	}
-	return data
 }
 
-export const fetchUsers = async (): Promise<User[]> => {
-	const { data, response } = await client.GET("/api/users")
-	return requireData(data, response.status)
-}
-
-export const fetchRoles = async (): Promise<Role[]> => {
-	const { data, response } = await client.GET("/api/roles")
-	return requireData(data, response.status)
-}
-
-export const fetchAuditLogs = async (): Promise<AuditLog[]> => {
-	const { data, response } = await client.GET("/api/audit-logs")
-	return requireData(data, response.status)
-}
-
-export const createUser = async (actorUserId: string, body: CreateUserInput): Promise<User> => {
-	const { data, response } = await client.POST("/api/users", {
-		body,
-		params: { header: { "x-actor-user-id": actorUserId } }
-	})
-	return requireData(data, response.status)
-}
-
-export const updateUser = async (
-	actorUserId: string,
-	userId: string,
-	body: UpdateUserInput
-): Promise<User> => {
-	const { data, response } = await client.PUT("/api/users/{userId}", {
-		body,
-		params: {
-			header: { "x-actor-user-id": actorUserId },
-			path: { userId }
+const requireData: Middleware = {
+	onResponse: ({ response }) => {
+		if (!response.ok) {
+			throw new ApiRequestError(response.status)
 		}
-	})
-	return requireData(data, response.status)
+	}
 }
 
-export const replaceUserRoles = async (
-	actorUserId: string,
-	userId: string,
-	body: ReplaceUserRolesInput
-): Promise<User> => {
-	const { data, response } = await client.PUT("/api/users/{userId}/roles", {
-		body,
-		params: {
-			header: { "x-actor-user-id": actorUserId },
-			path: { userId }
-		}
-	})
-	return requireData(data, response.status)
-}
+export const apiClient = createClient<paths>({ baseUrl: "" })
+
+apiClient.use(provisionActor, requireData)

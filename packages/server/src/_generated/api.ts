@@ -198,9 +198,7 @@ export interface operations {
     UsersController_create: {
         parameters: {
             query?: never;
-            header: {
-                "x-actor-user-id": string;
-            };
+            header?: never;
             path?: never;
             cookie?: never;
         };
@@ -241,9 +239,7 @@ export interface operations {
     UsersController_update: {
         parameters: {
             query?: never;
-            header: {
-                "x-actor-user-id": string;
-            };
+            header?: never;
             path: {
                 userId: string;
             };
@@ -280,9 +276,7 @@ export interface operations {
     UsersController_replaceRoles: {
         parameters: {
             query?: never;
-            header: {
-                "x-actor-user-id": string;
-            };
+            header?: never;
             path: {
                 userId: string;
             };

@@ -26,16 +26,7 @@
 			},
 			"post": {
 				"operationId": "UsersController_create",
-				"parameters": [
-					{
-						"name": "x-actor-user-id",
-						"in": "header",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
+				"parameters": [],
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -67,6 +58,11 @@
 						"description": ""
 					}
 				},
+				"security": [
+					{
+						"actor": []
+					}
+				],
 				"tags": [
 					"users"
 				]
@@ -82,14 +78,6 @@
 						"in": "path",
 						"schema": {
 							"format": "uuid",
-							"type": "string"
-						}
-					},
-					{
-						"name": "x-actor-user-id",
-						"in": "header",
-						"required": true,
-						"schema": {
 							"type": "string"
 						}
 					}
@@ -122,6 +110,11 @@
 						"description": ""
 					}
 				},
+				"security": [
+					{
+						"actor": []
+					}
+				],
 				"tags": [
 					"users"
 				]
@@ -137,14 +130,6 @@
 						"in": "path",
 						"schema": {
 							"format": "uuid",
-							"type": "string"
-						}
-					},
-					{
-						"name": "x-actor-user-id",
-						"in": "header",
-						"required": true,
-						"schema": {
 							"type": "string"
 						}
 					}
@@ -177,6 +162,11 @@
 						"description": ""
 					}
 				},
+				"security": [
+					{
+						"actor": []
+					}
+				],
 				"tags": [
 					"users"
 				]
@@ -278,6 +268,13 @@
 	],
 	"servers": [],
 	"components": {
+		"securitySchemes": {
+			"actor": {
+				"type": "apiKey",
+				"in": "header",
+				"name": "x-actor-user-id"
+			}
+		},
 		"schemas": {
 			"RoleResponseDto": {
 				"type": "object",

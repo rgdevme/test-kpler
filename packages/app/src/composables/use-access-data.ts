@@ -1,91 +1,80 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/vue-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/vue-query"
 
-import {
-	createUser,
-	fetchAuditLogs,
-	fetchRoles,
-	fetchUsers,
-	replaceUserRoles,
-	updateUser,
-} from "@/api/client.js";
-import type { CreateUserInput, ReplaceUserRolesInput, UpdateUserInput } from "@/api/types.js";
+import { apiClient } from "@/api/client.js"
+import type { CreateUserInput, ReplaceUserRolesInput, UpdateUserInput } from "@/api/types.js"
 
 const queryKeys = {
 	audit: ["access", "audit"] as const,
 	roles: ["access", "roles"] as const,
-	users: ["access", "users"] as const,
-};
+	users: ["access", "users"] as const
+}
 
 export const useUsersQuery = () =>
 	useQuery({
-		queryFn: fetchUsers,
-		queryKey: queryKeys.users,
-	});
+		queryFn: async () => (await apiClient.GET("/api/users")).data,
+		queryKey: queryKeys.users
+	})
 
 export const useRolesQuery = () =>
 	useQuery({
-		queryFn: fetchRoles,
-		queryKey: queryKeys.roles,
-	});
+		queryFn: async () => (await apiClient.GET("/api/roles")).data,
+		queryKey: queryKeys.roles
+	})
 
 export const useAuditLogsQuery = () =>
 	useQuery({
-		queryFn: fetchAuditLogs,
-		queryKey: queryKeys.audit,
-	});
+		queryFn: async () => (await apiClient.GET("/api/audit-logs")).data,
+		queryKey: queryKeys.audit
+	})
 
 export const useCreateUserMutation = () => {
-	const queryClient = useQueryClient();
+	const queryClient = useQueryClient()
 	return useMutation({
-		mutationFn: ({ actorUserId, input }: { actorUserId: string; input: CreateUserInput }) =>
-			createUser(actorUserId, input),
+		mutationFn: async (input: CreateUserInput) =>
+			(await apiClient.POST("/api/users", { body: input })).data,
 		onSuccess: async () => {
 			await Promise.all([
 				queryClient.invalidateQueries({ queryKey: queryKeys.users }),
-				queryClient.invalidateQueries({ queryKey: queryKeys.audit }),
-			]);
-		},
-	});
-};
+				queryClient.invalidateQueries({ queryKey: queryKeys.audit })
+			])
+		}
+	})
+}
 
 export const useUpdateUserMutation = () => {
-	const queryClient = useQueryClient();
+	const queryClient = useQueryClient()
 	return useMutation({
-		mutationFn: ({
-			actorUserId,
-			input,
-			userId,
-		}: {
-			actorUserId: string;
-			input: UpdateUserInput;
-			userId: string;
-		}) => updateUser(actorUserId, userId, input),
+		mutationFn: async ({ input, userId }: { input: UpdateUserInput; userId: string }) =>
+			(
+				await apiClient.PUT("/api/users/{userId}", {
+					body: input,
+					params: { path: { userId } }
+				})
+			).data,
 		onSuccess: async () => {
 			await Promise.all([
 				queryClient.invalidateQueries({ queryKey: queryKeys.users }),
-				queryClient.invalidateQueries({ queryKey: queryKeys.audit }),
-			]);
-		},
-	});
-};
+				queryClient.invalidateQueries({ queryKey: queryKeys.audit })
+			])
+		}
+	})
+}
 
 export const useReplaceRolesMutation = () => {
-	const queryClient = useQueryClient();
+	const queryClient = useQueryClient()
 	return useMutation({
-		mutationFn: ({
-			actorUserId,
-			input,
-			userId,
-		}: {
-			actorUserId: string;
-			input: ReplaceUserRolesInput;
-			userId: string;
-		}) => replaceUserRoles(actorUserId, userId, input),
+		mutationFn: async ({ input, userId }: { input: ReplaceUserRolesInput; userId: string }) =>
+			(
+				await apiClient.PUT("/api/users/{userId}/roles", {
+					body: input,
+					params: { path: { userId } }
+				})
+			).data,
 		onSuccess: async () => {
 			await Promise.all([
 				queryClient.invalidateQueries({ queryKey: queryKeys.users }),
-				queryClient.invalidateQueries({ queryKey: queryKeys.audit }),
-			]);
-		},
-	});
-};
+				queryClient.invalidateQueries({ queryKey: queryKeys.audit })
+			])
+		}
+	})
+}
