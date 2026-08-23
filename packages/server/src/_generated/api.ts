@@ -15,6 +15,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/users/{userId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put: operations["UsersController_update"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/users/{userId}/roles": {
         parameters: {
             query?: never;
@@ -116,6 +132,11 @@ export interface components {
             /** @default [] */
             roleIds: string[];
         };
+        UpdateUserDto: {
+            /** @example Alex Analyst */
+            displayName: string;
+            roleIds: string[];
+        };
         ReplaceUserRolesDto: {
             roleIds: string[];
         };
@@ -210,6 +231,45 @@ export interface operations {
                 content?: never;
             };
             409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    UsersController_update: {
+        parameters: {
+            query?: never;
+            header: {
+                "x-actor-user-id": string;
+            };
+            path: {
+                userId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateUserDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserResponseDto"];
+                };
+            };
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            404: {
                 headers: {
                     [name: string]: unknown;
                 };

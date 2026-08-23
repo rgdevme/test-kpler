@@ -72,6 +72,61 @@
 				]
 			}
 		},
+		"/api/users/{userId}": {
+			"put": {
+				"operationId": "UsersController_update",
+				"parameters": [
+					{
+						"name": "userId",
+						"required": true,
+						"in": "path",
+						"schema": {
+							"format": "uuid",
+							"type": "string"
+						}
+					},
+					{
+						"name": "x-actor-user-id",
+						"in": "header",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateUserDto"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/UserResponseDto"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": ""
+					},
+					"404": {
+						"description": ""
+					}
+				},
+				"tags": [
+					"users"
+				]
+			}
+		},
 		"/api/users/{userId}/roles": {
 			"put": {
 				"operationId": "UsersController_replaceRoles",
@@ -308,6 +363,28 @@
 				"required": [
 					"displayName",
 					"email"
+				]
+			},
+			"UpdateUserDto": {
+				"type": "object",
+				"properties": {
+					"displayName": {
+						"type": "string",
+						"example": "Alex Analyst",
+						"maxLength": 120,
+						"minLength": 2
+					},
+					"roleIds": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					}
+				},
+				"required": [
+					"displayName",
+					"roleIds"
 				]
 			},
 			"ReplaceUserRolesDto": {

@@ -11,7 +11,7 @@
 		},
 		"generate:types": {
 			"dependsOn": ["transit"],
-			"outputs": ["openapi.json", "src/generated/**"]
+			"outputs": ["src/_generated/**"]
 		},
 		"check:format": {
 			"dependsOn": ["transit"],

@@ -1,4 +1,6 @@
 import { Module } from "@nestjs/common";
+import { DocumentBuilder } from "@nestjs/swagger";
+import type { OpenAPIObject, SwaggerDocumentOptions } from "@nestjs/swagger";
 
 import { AuditController } from "../domains/audit/audit.controller.js";
 import { AuditService } from "../domains/audit/audit.service.js";
@@ -8,6 +10,21 @@ import { RolesService } from "../domains/roles/roles.service.js";
 import { UsersController } from "../domains/users/users.controller.js";
 import { UsersService } from "../domains/users/users.service.js";
 
+export const createOpenApiConfig = (): Omit<OpenAPIObject, "paths"> =>
+	new DocumentBuilder()
+		.setTitle("Access Provisioning and Audit API")
+		.setDescription("Manage user access levels and inspect the immutable access audit history.")
+		.setVersion("1.0.0")
+		.addTag("users")
+		.addTag("roles")
+		.addTag("audit")
+		.addTag("health")
+		.build();
+
+export const createOpenApiOptions = (): SwaggerDocumentOptions => ({
+	operationIdFactory: (controllerKey, methodKey) => `${controllerKey}_${methodKey}`,
+});
+
 @Module({
 	controllers: [UsersController, RolesController, AuditController, HealthController],
 	providers: [
@@ -16,4 +33,4 @@ import { UsersService } from "../domains/users/users.service.js";
 		{ provide: AuditService, useValue: {} },
 	],
 })
-export class OpenApiApplicationModule {}
+export class OpenApiModule {}

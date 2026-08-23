@@ -14,6 +14,7 @@ import type { RoleSnapshot } from "../audit/role-snapshot.js";
 import { Role } from "../roles/entities/role.entity.js";
 import type { CreateUserDto } from "./dto/create-user.dto.js";
 import type { ReplaceUserRolesDto } from "./dto/replace-user-roles.dto.js";
+import type { UpdateUserDto } from "./dto/update-user.dto.js";
 import type { UserResponseDto } from "./dto/user-response.dto.js";
 import { isUniqueViolation } from "./database-error.js";
 import { UserRole } from "./entities/user-role.entity.js";
@@ -81,31 +82,55 @@ export class UsersService {
 		actorUserId: string,
 		userId: string,
 		input: ReplaceUserRolesDto,
+	): Promise<UserResponseDto> => this.updateUser(actorUserId, userId, input.roleIds);
+
+	public readonly update = async (
+		actorUserId: string,
+		userId: string,
+		input: UpdateUserDto,
+	): Promise<UserResponseDto> =>
+		this.updateUser(actorUserId, userId, input.roleIds, input.displayName.trim());
+
+	private readonly updateUser = async (
+		actorUserId: string,
+		userId: string,
+		roleIds: string[],
+		displayName?: string,
 	): Promise<UserResponseDto> =>
 		this.dataSource.transaction("SERIALIZABLE", async (manager) => {
 			await this.requireUser(manager, actorUserId, "The selected actor does not exist.");
-			await this.requireUser(manager, userId, "The target user does not exist.");
-			const roles = await this.requireRoles(manager, input.roleIds);
+			const user = await this.requireUser(manager, userId, "The target user does not exist.");
+			const roles = await this.requireRoles(manager, roleIds);
 			const currentRoleRows = await manager.getRepository(UserRole).find({
 				relations: { role: true },
 				where: { userId },
 			});
 			const beforeRoles = this.mapRoleSnapshots(currentRoleRows.map(({ role }) => role));
 			const afterRoles = this.mapRoleSnapshots(roles);
+			const rolesChanged = !this.roleSnapshotsMatch(beforeRoles, afterRoles);
+			const nextDisplayName = displayName ?? user.displayName;
+			const displayNameChanged = nextDisplayName !== user.displayName;
 
-			if (this.roleSnapshotsMatch(beforeRoles, afterRoles)) {
+			if (!rolesChanged && !displayNameChanged) {
 				return mapUserResponse(await this.requireUserWithRoles(manager, userId));
 			}
 
-			await manager.getRepository(UserRole).delete({ userId });
-			await this.replaceRoleRows(manager, userId, roles);
-			await manager.getRepository(AuditLog).save({
-				action: AUDIT_ACTION.rolesChanged,
-				actorUserId,
-				afterRoles,
-				beforeRoles,
-				targetUserId: userId,
-			});
+			if (displayNameChanged) {
+				user.displayName = nextDisplayName;
+				await manager.save(user);
+			}
+
+			if (rolesChanged) {
+				await manager.getRepository(UserRole).delete({ userId });
+				await this.replaceRoleRows(manager, userId, roles);
+				await manager.getRepository(AuditLog).save({
+					action: AUDIT_ACTION.rolesChanged,
+					actorUserId,
+					afterRoles,
+					beforeRoles,
+					targetUserId: userId,
+				});
+			}
 
 			return mapUserResponse(await this.requireUserWithRoles(manager, userId));
 		});

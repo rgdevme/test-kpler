@@ -11,9 +11,10 @@ import {
 	ApiTags,
 } from "@nestjs/swagger";
 
-import { ACTOR_HEADER, ActorUserId } from "../../bootstrap/actor-user-id.decorator.js";
+import { ACTOR_HEADER, xActorUserId } from "../../decorators/xActorUserId.decorator.js";
 import { CreateUserDto } from "./dto/create-user.dto.js";
 import { ReplaceUserRolesDto } from "./dto/replace-user-roles.dto.js";
+import { UpdateUserDto } from "./dto/update-user.dto.js";
 import { UserResponseDto } from "./dto/user-response.dto.js";
 import { UsersService } from "./users.service.js";
 
@@ -36,10 +37,25 @@ export class UsersController {
 	@ApiNotFoundResponse()
 	@ApiConflictResponse()
 	public async create(
-		@ActorUserId(new ParseUUIDPipe({ version: "4" })) actorUserId: string,
+		@xActorUserId(new ParseUUIDPipe({ version: "4" })) actorUserId: string,
 		@Body() input: CreateUserDto,
 	): Promise<UserResponseDto> {
 		return this.usersService.create(actorUserId, input);
+	}
+
+	@Put(":userId")
+	@ApiHeader({ name: ACTOR_HEADER, required: true })
+	@ApiBody({ type: UpdateUserDto })
+	@ApiParam({ format: "uuid", name: "userId", type: String })
+	@ApiOkResponse({ type: UserResponseDto })
+	@ApiBadRequestResponse()
+	@ApiNotFoundResponse()
+	public async update(
+		@xActorUserId(new ParseUUIDPipe({ version: "4" })) actorUserId: string,
+		@Param("userId", new ParseUUIDPipe({ version: "4" })) userId: string,
+		@Body() input: UpdateUserDto,
+	): Promise<UserResponseDto> {
+		return this.usersService.update(actorUserId, userId, input);
 	}
 
 	@Put(":userId/roles")
@@ -50,7 +66,7 @@ export class UsersController {
 	@ApiBadRequestResponse()
 	@ApiNotFoundResponse()
 	public async replaceRoles(
-		@ActorUserId(new ParseUUIDPipe({ version: "4" })) actorUserId: string,
+		@xActorUserId(new ParseUUIDPipe({ version: "4" })) actorUserId: string,
 		@Param("userId", new ParseUUIDPipe({ version: "4" })) userId: string,
 		@Body() input: ReplaceUserRolesDto,
 	): Promise<UserResponseDto> {

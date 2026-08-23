@@ -7,7 +7,7 @@ type RequestWithHeaders = {
 
 export const ACTOR_HEADER = "x-actor-user-id";
 
-export const ActorUserId = createParamDecorator(
+export const xActorUserId = createParamDecorator(
 	(_data: unknown, context: ExecutionContext): string | undefined => {
 		const request = context.switchToHttp().getRequest<RequestWithHeaders>();
 		const value = request.headers[ACTOR_HEADER];
