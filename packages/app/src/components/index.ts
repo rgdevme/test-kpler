@@ -1,10 +1,12 @@
-export { default as BaseButton } from "./atoms/BaseButton/index.vue";
-export { default as RolePill } from "./atoms/RolePill/index.vue";
-export { default as ActorSelector } from "./molecules/ActorSelector/index.vue";
+export { default as Button } from "./atoms/Button/index.vue";
+export { default as Heading } from "./atoms/Heading/index.vue";
+export { default as Pill } from "./atoms/Pill/index.vue";
+export { default as Text } from "./atoms/Text/index.vue";
+export { default as Modal } from "./molecules/Modal/index.vue";
 export { default as RoleChecklist } from "./molecules/RoleChecklist/index.vue";
-export { default as AddUserPanel } from "./organisms/AddUserPanel/index.vue";
+export { default as UserSelector } from "./molecules/UserSelector/index.vue";
 export { default as AuditTable } from "./organisms/AuditTable/index.vue";
 export { default as NavigationHeader } from "./organisms/NavigationHeader/index.vue";
-export { default as RoleEditor } from "./organisms/RoleEditor/index.vue";
+export { default as UserModal } from "./organisms/UserModal/index.vue";
 export { default as UsersTable } from "./organisms/UsersTable/index.vue";
 export { default as DashboardShell } from "./templates/DashboardShell/index.vue";

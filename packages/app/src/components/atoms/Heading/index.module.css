@@ -1,0 +1,5 @@
+@reference "../../../styles/globals.css";
+
+.heading {
+	@apply m-0 font-display text-2xl tracking-tight text-ink;
+}

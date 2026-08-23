@@ -1,0 +1,71 @@
+@reference "../../../styles/globals.css";
+
+.selector {
+	@apply relative inline-flex items-center gap-2;
+}
+
+.picker {
+	@apply relative;
+}
+
+.trigger {
+	@apply inline-flex min-h-10 min-w-48 cursor-pointer items-stretch overflow-hidden rounded-full border border-line bg-white p-0 text-sm font-semibold text-ink transition hover:border-ink disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.selected {
+	@apply flex flex-1 items-center px-4 py-2 text-left;
+}
+
+.toggle {
+	@apply grid w-10 place-items-center border-l border-line text-muted transition;
+
+	svg {
+		@apply size-4 transition-transform duration-200;
+	}
+
+	&[data-open="true"] svg {
+		@apply rotate-180;
+	}
+}
+
+.dropdown {
+	@apply absolute top-full left-0 z-40 mt-2 grid min-w-64 origin-top list-none overflow-hidden rounded-2xl border border-line bg-white p-1 shadow-panel;
+}
+
+.option {
+	@apply grid cursor-pointer gap-0.5 rounded-xl px-4 py-3 text-sm text-ink outline-none transition;
+
+	span {
+		@apply text-xs text-muted;
+	}
+
+	&[data-active="true"] {
+		@apply bg-canvas;
+	}
+
+	&[aria-selected="true"] {
+		@apply bg-ink text-white;
+
+		span {
+			@apply text-gray-300;
+		}
+	}
+}
+
+.dropdownEnterActive,
+.dropdownLeaveActive {
+	@apply transition duration-150;
+}
+
+.dropdownEnterFrom,
+.dropdownLeaveTo {
+	@apply -translate-y-2 scale-95 opacity-0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.toggle svg,
+	.dropdownEnterActive,
+	.dropdownLeaveActive {
+		@apply duration-0;
+	}
+}

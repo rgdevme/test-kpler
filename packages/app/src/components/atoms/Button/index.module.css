@@ -14,4 +14,12 @@
 	&[data-variant="quiet"] {
 		@apply min-h-8 border-transparent bg-transparent px-3 text-ink hover:bg-canvas;
 	}
+
+	&[data-variant="icon"] {
+		@apply size-10 min-h-0 shrink-0 border-ink bg-ink p-0 text-white hover:bg-accent hover:text-accent-ink;
+
+		svg {
+			@apply size-5;
+		}
+	}
 }

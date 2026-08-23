@@ -22,6 +22,19 @@
 	tbody tr:last-child td {
 		@apply border-b-0;
 	}
+
+	tbody tr {
+		@apply cursor-pointer transition;
+
+		&:hover,
+		&[aria-selected="true"] {
+			@apply bg-canvas;
+		}
+
+		&:focus-visible {
+			@apply outline-2 outline-offset-2 outline-accent;
+		}
+	}
 }
 
 .identity {

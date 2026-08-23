@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { AuditTable, BaseButton } from "@/components/index.js";
+import { AuditTable, Button } from "@/components/index.js";
 import { useAuditLogsQuery } from "@/composables/use-access-data.js";
 import { strings } from "@/data/locale/en.js";
 import styles from "./index.module.css";
@@ -20,9 +20,9 @@ const auditLogs = computed(() => auditQuery.data.value ?? []);
 		<p v-if="auditQuery.isPending.value" role="status">{{ strings.common.loading }}</p>
 		<div v-else-if="auditQuery.isError.value" :class="styles.error">
 			<p role="alert">{{ strings.audit.loadError }}</p>
-			<BaseButton variant="secondary" @click="auditQuery.refetch()">
+			<Button variant="secondary" @click="auditQuery.refetch()">
 				{{ strings.common.retry }}
-			</BaseButton>
+			</Button>
 		</div>
 		<AuditTable v-else-if="auditLogs.length > 0" :audit-logs="auditLogs" />
 		<p v-else>{{ strings.audit.empty }}</p>

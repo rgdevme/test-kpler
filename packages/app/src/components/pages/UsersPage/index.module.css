@@ -20,14 +20,6 @@
 	}
 }
 
-.workspace {
-	@apply grid gap-6 lg:grid-cols-2;
-}
-
-.placeholder {
-	@apply grid min-h-72 place-items-center rounded-3xl border border-dashed border-line p-6 text-center text-muted;
-}
-
 .error {
 	@apply flex items-center justify-between rounded-2xl border border-danger bg-danger-soft p-4 text-danger;
 }

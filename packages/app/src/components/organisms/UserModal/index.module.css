@@ -1,0 +1,25 @@
+@reference "../../../styles/globals.css";
+
+.form {
+	@apply grid gap-5;
+}
+
+.field {
+	@apply grid gap-2 text-sm font-semibold;
+
+	input {
+		@apply min-h-11 rounded-xl border border-line bg-white px-3 font-normal text-ink placeholder:text-muted;
+
+		&:disabled {
+			@apply cursor-not-allowed bg-canvas text-muted;
+		}
+	}
+
+	small {
+		@apply font-normal text-danger;
+	}
+}
+
+.feedback {
+	@apply m-0 text-sm text-muted;
+}

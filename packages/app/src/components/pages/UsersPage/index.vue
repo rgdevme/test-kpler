@@ -1,38 +1,26 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, ref } from "vue";
 
 import type { User } from "@/api/types.js";
-import {
-	ActorSelector,
-	AddUserPanel,
-	BaseButton,
-	RoleEditor,
-	UsersTable,
-} from "@/components/index.js";
+import { Button, UserModal, UsersTable } from "@/components/index.js";
 import { useRolesQuery, useUsersQuery } from "@/composables/use-access-data.js";
 import { strings } from "@/data/locale/en.js";
+import { useActorStore } from "@/stores/useActorStore.js";
 import styles from "./index.module.css";
 
 const usersQuery = useUsersQuery();
 const rolesQuery = useRolesQuery();
 const users = computed(() => usersQuery.data.value ?? []);
 const roles = computed(() => rolesQuery.data.value ?? []);
-const actorUserId = ref("");
-const selectedUserId = ref("");
-const selectedUser = computed(() => users.value.find((user) => user.id === selectedUserId.value));
-
-watch(
-	users,
-	(nextUsers) => {
-		if (!nextUsers.some((user) => user.id === actorUserId.value)) {
-			actorUserId.value = nextUsers[0]?.id ?? "";
-		}
-	},
-	{ immediate: true },
-);
+const { actorUserId } = useActorStore();
+const selectedUser = ref<User>();
 
 const selectUser = (user: User): void => {
-	selectedUserId.value = user.id;
+	selectedUser.value = user;
+};
+
+const closeUserModal = (): void => {
+	selectedUser.value = undefined;
 };
 </script>
 
@@ -51,30 +39,27 @@ const selectUser = (user: User): void => {
 		</p>
 		<div v-else-if="usersQuery.isError.value || rolesQuery.isError.value" :class="styles.error">
 			<p role="alert">{{ strings.users.loadError }}</p>
-			<BaseButton variant="secondary" @click="usersQuery.refetch()">
+			<Button variant="secondary" @click="usersQuery.refetch()">
 				{{ strings.common.retry }}
-			</BaseButton>
+			</Button>
 		</div>
 		<template v-else>
-			<ActorSelector v-model="actorUserId" :users="users" />
-			<div :class="styles.workspace">
-				<AddUserPanel :actor-user-id="actorUserId" :roles="roles" @created="selectUser" />
-				<RoleEditor
-					v-if="selectedUser"
-					:key="selectedUser.id"
-					:actor-user-id="actorUserId"
-					:roles="roles"
-					:user="selectedUser"
-				/>
-				<div v-else :class="styles.placeholder">{{ strings.users.selectUser }}</div>
-			</div>
 			<UsersTable
 				v-if="users.length > 0"
-				:selected-user-id="selectedUserId"
+				:selected-user-id="selectedUser?.id ?? ''"
 				:users="users"
 				@select="selectUser"
 			/>
 			<p v-else>{{ strings.users.empty }}</p>
+			<UserModal
+				v-if="selectedUser"
+				:key="selectedUser.id"
+				:actor-user-id="actorUserId"
+				:roles="roles"
+				:user="selectedUser"
+				@close="closeUserModal"
+				@saved="closeUserModal"
+			/>
 		</template>
 	</div>
 </template>

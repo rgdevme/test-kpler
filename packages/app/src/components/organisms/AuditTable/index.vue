@@ -11,7 +11,7 @@ import type { ColumnDef } from "@tanstack/vue-table";
 import { computed, h } from "vue";
 
 import type { AuditLog } from "@/api/types.js";
-import { RolePill } from "@/components/index.js";
+import { Pill } from "@/components/index.js";
 import { strings } from "@/data/locale/en.js";
 import styles from "./index.module.css";
 
@@ -32,7 +32,7 @@ const renderRoles = (roles: AuditLog["beforeRoles"]) =>
 		{ class: styles.roles },
 		roles.length === 0
 			? [h("span", { class: styles.none }, "—")]
-			: roles.map((role) => h(RolePill, { key: role.id, name: role.name })),
+			: roles.map((role) => h(Pill, { key: role.id, name: role.name })),
 	);
 
 const columns: ColumnDef<typeof features, AuditLog>[] = [

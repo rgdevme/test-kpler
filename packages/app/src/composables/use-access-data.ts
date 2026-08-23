@@ -6,8 +6,9 @@ import {
 	fetchRoles,
 	fetchUsers,
 	replaceUserRoles,
+	updateUser,
 } from "@/api/client.js";
-import type { CreateUserInput, ReplaceUserRolesInput } from "@/api/types.js";
+import type { CreateUserInput, ReplaceUserRolesInput, UpdateUserInput } from "@/api/types.js";
 
 const queryKeys = {
 	audit: ["access", "audit"] as const,
@@ -38,6 +39,27 @@ export const useCreateUserMutation = () => {
 	return useMutation({
 		mutationFn: ({ actorUserId, input }: { actorUserId: string; input: CreateUserInput }) =>
 			createUser(actorUserId, input),
+		onSuccess: async () => {
+			await Promise.all([
+				queryClient.invalidateQueries({ queryKey: queryKeys.users }),
+				queryClient.invalidateQueries({ queryKey: queryKeys.audit }),
+			]);
+		},
+	});
+};
+
+export const useUpdateUserMutation = () => {
+	const queryClient = useQueryClient();
+	return useMutation({
+		mutationFn: ({
+			actorUserId,
+			input,
+			userId,
+		}: {
+			actorUserId: string;
+			input: UpdateUserInput;
+			userId: string;
+		}) => updateUser(actorUserId, userId, input),
 		onSuccess: async () => {
 			await Promise.all([
 				queryClient.invalidateQueries({ queryKey: queryKeys.users }),

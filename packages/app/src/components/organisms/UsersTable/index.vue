@@ -11,7 +11,7 @@ import type { ColumnDef } from "@tanstack/vue-table";
 import { computed, h } from "vue";
 
 import type { User } from "@/api/types.js";
-import { BaseButton, RolePill } from "@/components/index.js";
+import { Pill } from "@/components/index.js";
 import { strings } from "@/data/locale/en.js";
 import styles from "./index.module.css";
 
@@ -48,20 +48,7 @@ const columns: ColumnDef<typeof features, User>[] = [
 			h(
 				"div",
 				{ class: styles.roles },
-				row.original.roles.map((role) => h(RolePill, { key: role.id, name: role.name })),
-			),
-	},
-	{
-		id: "actions",
-		cell: ({ row }) =>
-			h(
-				BaseButton,
-				{
-					"aria-label": `Edit access for ${row.original.displayName}`,
-					onClick: () => emit("select", row.original),
-					variant: props.selectedUserId === row.original.id ? "primary" : "secondary",
-				},
-				() => strings.users.rolesHeading,
+				row.original.roles.map((role) => h(Pill, { key: role.id, name: role.name })),
 			),
 	},
 ];
@@ -88,7 +75,16 @@ const table = useTable({ columns, data, features, key: "users-table" });
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="row in table.getRowModel().rows" :key="row.id">
+				<tr
+					v-for="row in table.getRowModel().rows"
+					:key="row.id"
+					:aria-label="strings.users.editUserLabel(row.original.displayName)"
+					:aria-selected="selectedUserId === row.original.id"
+					tabindex="0"
+					@click="emit('select', row.original)"
+					@keydown.enter="emit('select', row.original)"
+					@keydown.space.prevent="emit('select', row.original)"
+				>
 					<td v-for="cell in row.getAllCells()" :key="cell.id">
 						<FlexRender :cell="cell" />
 					</td>

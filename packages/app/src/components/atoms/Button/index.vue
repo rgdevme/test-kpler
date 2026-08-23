@@ -4,11 +4,13 @@ import styles from "./index.module.css";
 withDefaults(
 	defineProps<{
 		disabled?: boolean;
+		form?: string | undefined;
 		type?: "button" | "submit";
-		variant?: "primary" | "secondary" | "quiet";
+		variant?: "icon" | "primary" | "secondary" | "quiet";
 	}>(),
 	{
 		disabled: false,
+		form: undefined,
 		type: "button",
 		variant: "primary",
 	},
@@ -16,7 +18,13 @@ withDefaults(
 </script>
 
 <template>
-	<button :class="styles.button" :data-variant="variant" :disabled="disabled" :type="type">
+	<button
+		:class="styles.button"
+		:data-variant="variant"
+		:disabled="disabled"
+		:form="form"
+		:type="type"
+	>
 		<slot />
 	</button>
 </template>

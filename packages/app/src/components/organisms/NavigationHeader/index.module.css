@@ -1,11 +1,11 @@
 @reference "../../../styles/globals.css";
 
 .header {
-	@apply mx-auto flex w-full max-w-7xl flex-col gap-5 px-5 py-6 sm:flex-row sm:items-center sm:justify-between lg:px-8;
+	@apply mx-auto w-full max-w-7xl grid grid-cols-2 md:grid-cols-3 gap-5 px-5 py-6 sm:items-center sm:justify-between lg:px-8;
 }
 
 .brand {
-	@apply flex items-center gap-3 text-ink no-underline;
+	@apply flex items-center gap-3 col-span-2 md:col-span-1 text-ink no-underline;
 
 	> span:last-child {
 		@apply flex flex-col;
@@ -24,11 +24,19 @@
 	@apply grid size-11 place-items-center rounded-xl bg-ink font-display text-xl text-accent;
 }
 
+.menu {
+	@apply flex items-center justify-end gap-3 flex-nowrap col-span-2 md:col-span-1;
+}
+
 .navigation {
-	@apply flex rounded-full border border-line bg-surface p-1;
+	@apply flex justify-start sm:justify-center col-span-2 md:col-span-1;
+
+	nav {
+		@apply flex rounded-full border border-line bg-surface p-1;
+	}
 
 	a {
-		@apply rounded-full px-4 py-2 text-sm font-semibold text-muted no-underline transition;
+		@apply rounded-full px-4 py-2 text-sm font-semibold text-muted no-underline transition break-keep whitespace-nowrap;
 
 		&[aria-current="page"] {
 			@apply bg-ink text-white;

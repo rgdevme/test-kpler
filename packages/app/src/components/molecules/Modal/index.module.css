@@ -1,0 +1,21 @@
+@reference "../../../styles/globals.css";
+
+.backdrop {
+	@apply fixed inset-0 z-50 grid place-items-center bg-ink/50 p-4;
+}
+
+.modal {
+	@apply max-h-screen w-full max-w-lg overflow-y-auto rounded-3xl border border-line bg-surface shadow-panel outline-none;
+}
+
+.header {
+	@apply grid gap-2 border-b border-line px-6 py-5;
+}
+
+.content {
+	@apply px-6 py-5;
+}
+
+.actions {
+	@apply flex items-center justify-end gap-3 border-t border-line px-6 py-4;
+}
