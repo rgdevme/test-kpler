@@ -23,8 +23,8 @@ export default defineConfig({
 		command: "pnpm stack:start",
 		env: stackEnvironment,
 		reuseExistingServer: false,
-		stderr: "pipe",
-		stdout: "pipe",
+		stderr: "ignore",
+		stdout: "ignore",
 		timeout: 240_000,
 		url: "http://127.0.0.1:18080/api/health"
 	},

@@ -8,12 +8,19 @@ const teardown = async (): Promise<void> => {
 		[...composeArguments, "down", "--volumes", "--remove-orphans"],
 		{
 			cwd: repositoryRoot,
+			encoding: "utf8",
 			env: composeEnvironment,
-			stdio: "inherit"
+			stdio: "pipe"
 		}
 	)
 	if (result.error !== undefined || result.status !== 0) {
-		throw new Error("The E2E Docker stack could not be removed.", { cause: result.error })
+		const output = `${result.stdout ?? ""}\n${result.stderr ?? ""}`.trim()
+		const message =
+			output === ""
+				? "The E2E Docker stack could not be removed."
+				: `The E2E Docker stack could not be removed.\n${output}`
+
+		throw new Error(message, { cause: result.error })
 	}
 }
 
