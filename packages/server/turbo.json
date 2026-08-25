@@ -2,10 +2,10 @@
 	"extends": ["//"],
 	"tasks": {
 		"build": {
-			"dependsOn": ["$TURBO_EXTENDS$", "generate:types"]
+			"dependsOn": ["check", "run:typegen"]
 		},
-		"check:typecheck": {
-			"dependsOn": ["$TURBO_EXTENDS$", "generate:types"]
+		"start": {
+			"dependsOn": ["build", "run:db"]
 		}
 	}
 }

@@ -9,17 +9,14 @@
 	"packageManager": "pnpm@11.5.2",
 	"scripts": {
 		"build": "turbo run build",
-		"check": "turbo run check:format check:lint check:typecheck",
+		"check": "turbo run check",
 		"check:format": "turbo run check:format",
 		"check:lint": "turbo run check:lint",
 		"check:typecheck": "turbo run check:typecheck",
 		"dev": "turbo run dev",
-		"format:fix": "turbo run format:fix",
-		"generate:types": "turbo run generate:types --filter=@access/server",
-		"lint:fix": "turbo run lint:fix",
 		"start": "turbo run start",
 		"test": "turbo run test",
-		"verify": "turbo run check:format check:lint check:typecheck test"
+		"verify": "turbo run check test"
 	},
 	"devDependencies": {
 		"@eslint/js": "catalog:",

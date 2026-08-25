@@ -1,9 +1,7 @@
 name: access-provisioning-portal
 
 x-server-service: &server-service
-  build:
-    context: .
-    dockerfile: packages/server/Dockerfile
+  image: access-provisioning-portal-server
   environment:
     DATABASE_URL: postgresql://access:access@database:5432/access_portal
     PORT: 3000
@@ -43,6 +41,11 @@ services:
 
   server:
     <<: *server-service
+    pull_policy: build
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: server-runtime
     depends_on:
       seed:
         condition: service_completed_successfully
@@ -55,9 +58,12 @@ services:
       - "${API_PORT:-3000}:3000"
 
   app:
+    image: access-provisioning-portal-app
+    pull_policy: build
     build:
       context: .
-      dockerfile: packages/app/Dockerfile
+      dockerfile: Dockerfile
+      target: app-runtime
     depends_on:
       server:
         condition: service_healthy

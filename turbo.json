@@ -6,42 +6,30 @@
 	},
 	"globalPassThroughEnv": ["CI", "TURBO_TOKEN", "TURBO_TEAM", "TURBO_REMOTE_CACHE_SIGNATURE_KEY"],
 	"tasks": {
-		"transit": {
-			"dependsOn": ["^transit"]
-		},
-		"generate:types": {
-			"dependsOn": ["transit"],
+		"run:typegen": {
 			"outputs": ["src/_generated/**"]
 		},
 		"check:format": {
-			"dependsOn": ["transit"],
 			"outputs": []
 		},
 		"check:lint": {
-			"dependsOn": ["transit"],
 			"outputs": []
 		},
 		"check:typecheck": {
-			"dependsOn": ["transit"],
 			"outputs": [".cache/typecheck.tsbuildinfo"]
 		},
-		"test": {
-			"dependsOn": ["transit"],
-			"outputs": ["playwright-report/**", "test-results/**"]
+		"check": {
+			"dependsOn": ["check:format", "check:lint", "check:typecheck"],
+			"outputs": []
 		},
 		"build": {
-			"dependsOn": [
-				"^build",
-				"generate:types",
-				"check:format",
-				"check:lint",
-				"check:typecheck",
-				"@access/e2e#test"
-			],
 			"outputs": ["dist/**"]
 		},
+		"test": {
+			"outputs": ["playwright-report/**", "test-results/**"]
+		},
 		"dev": {
-			"dependsOn": ["generate:types"],
+			"dependsOn": ["run:typegen"],
 			"cache": false,
 			"persistent": true
 		},
@@ -49,10 +37,7 @@
 			"cache": false,
 			"persistent": true
 		},
-		"format:fix": {
-			"cache": false
-		},
-		"lint:fix": {
+		"run:db": {
 			"cache": false
 		}
 	}

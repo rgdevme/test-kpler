@@ -14,14 +14,12 @@
 		"check:format": "prettier --check . --ignore-path ../../.prettierignore",
 		"check:lint": "eslint .",
 		"check:typecheck": "tsc --noEmit --incremental --tsBuildInfoFile .cache/typecheck.tsbuildinfo",
-		"database:start": "docker compose -f ../../docker-compose.yml up database --detach --wait",
-		"dev": "pnpm database:start && nest start --watch",
-		"format:fix": "prettier --write . --ignore-path ../../.prettierignore",
-		"generate:types": "tsx src/openapi/generate-types.ts",
-		"lint:fix": "eslint . --fix",
-		"migration:run": "tsx src/database/run-migrations.ts",
-		"seed": "tsx src/database/seed.ts",
-		"start": "pnpm database:start && node dist/main.js"
+		"dev": "pnpm run:db && nest start --watch",
+		"run:migration": "tsx src/database/run-migrations.ts",
+		"run:seeding": "tsx src/database/seed.ts",
+		"run:typegen": "tsx src/openapi/generate-types.ts",
+		"run:db": "docker compose -f ../../docker-compose.yml up database --detach --wait",
+		"start": "node dist/main.js"
 	},
 	"dependencies": {
 		"@nestjs/common": "catalog:",
