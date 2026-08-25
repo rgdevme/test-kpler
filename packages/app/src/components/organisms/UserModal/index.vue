@@ -5,7 +5,7 @@ import { computed, ref, useId } from "vue"
 import { ApiRequestError } from "@/api/client.js"
 import type { Role, User } from "@/api/types.js"
 import { Button, Heading, Modal, RoleChecklist, Text } from "@/components/index.js"
-import { useCreateUserMutation, useUpdateUserMutation } from "@/composables/use-access-data.js"
+import { useCreateUserMutation, useUpdateUserMutation } from "@/composables/useAccessData.js"
 import { strings } from "@/data/locale/en.js"
 import styles from "./index.module.css"
 

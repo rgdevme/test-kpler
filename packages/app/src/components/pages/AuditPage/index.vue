@@ -2,7 +2,7 @@
 import { computed } from "vue"
 
 import { AuditTable, Button } from "@/components/index.js"
-import { useAuditLogsQuery } from "@/composables/use-access-data.js"
+import { useAuditLogsQuery } from "@/composables/useAccessData.js"
 import { strings } from "@/data/locale/en.js"
 import styles from "./index.module.css"
 

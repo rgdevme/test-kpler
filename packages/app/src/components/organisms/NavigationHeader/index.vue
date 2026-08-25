@@ -2,7 +2,7 @@
 import { computed, ref, watch } from "vue"
 
 import { UserModal, UserSelector } from "@/components/index.js"
-import { useRolesQuery, useUsersQuery } from "@/composables/use-access-data.js"
+import { useRolesQuery, useUsersQuery } from "@/composables/useAccessData.js"
 import { strings } from "@/data/locale/en.js"
 import { useActorStore } from "@/stores/useActorStore.js"
 import styles from "./index.module.css"

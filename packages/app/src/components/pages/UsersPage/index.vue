@@ -3,7 +3,7 @@ import { computed, ref } from "vue"
 
 import type { User } from "@/api/types.js"
 import { Button, UserModal, UsersTable } from "@/components/index.js"
-import { useRolesQuery, useUsersQuery } from "@/composables/use-access-data.js"
+import { useRolesQuery, useUsersQuery } from "@/composables/useAccessData.js"
 import { strings } from "@/data/locale/en.js"
 import styles from "./index.module.css"
 
